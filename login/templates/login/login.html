@@ -1,0 +1,74 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+        <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css" rel="stylesheet">
+      <link rel="stylesheet" href="{% static 'login/css/login.css' %}" />
+
+    <title>登录</title>
+  </head>
+  <body>
+
+    <div class="container">
+        <div class="col">
+            <form class="form-login" action="/login/" method="post">
+
+                {% if login_form.captcha.errors %}
+                    <div class="alert alert-warning">{{ login_form.captcha.errors }}</div>
+                {% elif message %}
+                    <div class="alert alert-warning">{{ message }}</div>
+                {% endif %}
+
+                {% csrf_token %}
+                <h3 class="text-center">欢迎登录</h3>
+
+                {#                    {{ login_form }}#}
+                {#     改良版      #}
+                <div class="form-group">
+                    {{ login_form.username.label_tag }}
+                    {{ login_form.username }}
+                </div>
+                <div class="form-group ">
+                    {{ login_form.password.label_tag }}
+                    {{ login_form.password }}
+                </div>
+                <div class="form-group">
+                    {{ login_form.captcha.label_tag }}
+                    {{ login_form.captcha }}
+                </div>
+
+
+{#                <div class="form-group">#}
+{#                    <label for="id_username">用户名: </label>#}
+{#                    <input type="text" name="username" class="form-control" id="id_username" placeholder="Username" autofocus required>#}
+{#                </div>#}
+{#                <div class="form-group">#}
+{#                    <label for="id_password">密码: </label>#}
+{#                    <input type="password" name="password" class="form-control" id="id_password" placeholder="Password" required>#}
+{#                </div>#}
+                <div>
+                    <a href="/register/" class="text-success "><ins>新用户注册</ins>></a>
+                    <button type="submit" class="btn btn-primary float-right">登录</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/popper.js/1.9.8/umd/popper.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.min.js"></script>
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
+    -->
+  </body>
+</html>
